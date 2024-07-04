@@ -1,6 +1,6 @@
-import IceCream from './IceCream';
+import ConcreteIceCream from './ConcreteIceCream';
 
-export default class Strawberry extends IceCream {
+export default class Strawberry extends ConcreteIceCream {
   constructor() {
     super('strawberry');
   }

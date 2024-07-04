@@ -1,4 +1,4 @@
-export default interface IceCreamType {
+export default interface IceCream {
   flavor: string;
   message: () => void;
 }

@@ -1,6 +1,6 @@
-import IceCreamType from './definitions';
+import IceCream from './definitions';
 
-export default class IceCream implements IceCreamType {
+export default class ConcreteIceCream implements IceCream {
   constructor(public flavor: string) {}
 
   public message = () => {

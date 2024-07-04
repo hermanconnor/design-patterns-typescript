@@ -1,4 +1,4 @@
-import IceCreamType from './definitions';
+import IceCream from './definitions';
 import Chocolate from './Chocolate';
 import Vanilla from './Vanilla';
 import Strawberry from './Strawberry';
@@ -6,7 +6,7 @@ import Strawberry from './Strawberry';
 export default class IceCreamFactory {
   constructor() {}
 
-  public static createIcecream = (flavor: string): IceCreamType | null => {
+  public static createIcecream = (flavor: string): IceCream | null => {
     switch (flavor.toLowerCase()) {
       case 'chocolate':
         return new Chocolate();
