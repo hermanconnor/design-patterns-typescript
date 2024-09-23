@@ -40,7 +40,7 @@ export default class IceCreamFactory {
     if (FlavorClass) {
       return new FlavorClass();
     } else {
-      return null;
+      return null; // or throw an error if flavor is not supported
     }
   };
 }
