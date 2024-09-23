@@ -6,7 +6,7 @@ The factory pattern is a creational pattern that provides a template that can be
 It is used in complex situations where the type of the object required varies and needs to be specified in each case.
 It does not use the `new` keyword directly to instantiate objects. This means it does not explicitly require the use of a constructor to create objects. Instead, it provides a generic interface that delegates the object creation responsibility to the corresponding subclass.
 
-## Example
+### Example
 
 ```ts
 interface Product {
@@ -69,7 +69,7 @@ Instead of creating `b` directly in the client, it asks the creator (factory) fo
 
 The factory finds the relevant class using some kind of logic from the attributes of the request. It then asks the subclass to instantiate the new object that it then returns as a reference back to the client asking for it.
 
-## When to use the factory pattern?
+### When to use the factory pattern?
 
 These are a few examples of when one can use the factory pattern
 
@@ -77,7 +77,7 @@ These are a few examples of when one can use the factory pattern
 - When multiple objects that share similar characteristics need to be created
 - When you want to generalize the object instantiation process since the object set up is complex in nature
 
-## A few points about the factory pattern
+### Summary
 
 - The Factory Pattern defers the creation of the final object to a subclass.
 - The Factory pattern is about inserting another layer/abstraction between instantiating an object and where in your code it is actually used.
