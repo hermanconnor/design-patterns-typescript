@@ -1,17 +1,22 @@
 import ModernFurnitureFactory from './factories/ModernFurnitureFactory';
 import VictorianFurnitureFactory from './factories/VictorianFurnitureFactory';
+import FurnitureShowroom from './FurnitureShowroom';
 import IFurnitureFactory from './interfaces/FurnitureFactory';
 
-function clientCode(factory: IFurnitureFactory) {
-  const chair = factory.createChair();
-  const sofa = factory.createSofa();
+function main() {
+  let factory: IFurnitureFactory;
 
-  console.log(chair.sitOn());
-  console.log(sofa.lieOn());
+  // Simulate a condition to choose a factory
+  const isModernStyle = true; // Change this to false for Victorian style
+
+  if (isModernStyle) {
+    factory = new ModernFurnitureFactory();
+  } else {
+    factory = new VictorianFurnitureFactory();
+  }
+
+  const showroom = new FurnitureShowroom(factory);
+  showroom.displayFurniture();
 }
 
-const modernFactory = new ModernFurnitureFactory();
-clientCode(modernFactory);
-
-const victorianFactory = new VictorianFurnitureFactory();
-clientCode(victorianFactory);
+main();
