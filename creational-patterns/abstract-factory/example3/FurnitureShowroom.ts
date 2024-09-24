@@ -12,7 +12,7 @@ export default class FurnitureShowroom {
   }
 
   displayFurniture(): void {
-    this.chair.sitOn();
-    this.sofa.lieOn();
+    console.log(this.chair.sitOn());
+    console.log(this.sofa.lieOn());
   }
 }
