@@ -14,7 +14,7 @@ The Abstract Factory design pattern is a creational design pattern that provides
 
 4. **Concrete Products**: Classes that implement the abstract product interfaces, providing specific implementations.
 
-### When to use the factory pattern?
+### When to use the abstract factory pattern?
 
 The Abstract Factory design pattern is particularly useful in several scenarios:
 
