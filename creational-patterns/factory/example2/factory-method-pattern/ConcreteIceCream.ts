@@ -1,4 +1,4 @@
-import IceCream from './definitions';
+import IceCream from './types';
 
 export default class ConcreteIceCream implements IceCream {
   constructor(public flavor: string) {}
