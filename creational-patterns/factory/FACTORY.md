@@ -65,8 +65,6 @@ The Factory design pattern is useful in several situations where you want to man
 
 ### PROS AND CONS
 
-The Factory design pattern has several advantages and disadvantages. Understanding these can help you decide when and how to use it effectively.
-
 #### Pros
 
 1. **Decoupling**:
