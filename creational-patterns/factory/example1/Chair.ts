@@ -4,7 +4,7 @@ export interface IChair {
   height: number;
   width: number;
   depth: number;
-  getDimensions(): Dimensions;
+  getDimensions(): Readonly<Dimensions>;
 }
 
 export default class Chair implements IChair {
@@ -12,9 +12,7 @@ export default class Chair implements IChair {
   width = 0;
   depth = 0;
 
-  constructor() {}
-
-  getDimensions(): Dimensions {
+  getDimensions(): Readonly<Dimensions> {
     return {
       height: this.height,
       width: this.width,
