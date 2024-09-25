@@ -4,8 +4,8 @@ Both examples represent valid implementations of the Factory pattern, but they i
 
 1. **Type of Factory Pattern**:
 
-   - **Simple Factory**: The ice cream example uses a **simple factory** pattern. It centralizes object creation in a single factory method that returns specific types based on input parameters. This method does not rely on inheritance or abstract classes.
-   - **Factory Method**: The shapes example uses the **factory method** pattern. This pattern relies on an abstract class (creator) that defines a method for creating objects, allowing subclasses to override that method to create specific objects. This adds a layer of abstraction and flexibility.
+   - **Simple Factory**: It centralizes object creation in a single factory method that returns specific types based on input parameters. This method does not rely on inheritance or abstract classes.
+   - **Factory Method**: This pattern relies on an abstract class (creator) that defines a method for creating objects, allowing subclasses to override that method to create specific objects. This adds a layer of abstraction and flexibility.
 
 2. **Inheritance**:
 
@@ -29,4 +29,4 @@ Both examples represent valid implementations of the Factory pattern, but they i
 
 ### Conclusion
 
-Both the ice cream factory and the shape factory examples are correct but serve different purposes and use cases within the Factory pattern. Understanding the context and requirements of your application will help you choose the appropriate implementation. If you have further questions or need additional examples, let me know!
+Both the examples are correct but serve different purposes and use cases within the Factory pattern. Understanding the context and requirements of your application will help you choose the appropriate implementation.

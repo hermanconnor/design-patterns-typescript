@@ -4,8 +4,6 @@ import SmallChair from './SmallChair';
 import { IChair } from './Chair';
 
 export default class ChairFactory {
-  constructor() {}
-
   static getChair = (chairType: string): IChair => {
     if (chairType.toLowerCase() === 'big') {
       return new BigChair();
