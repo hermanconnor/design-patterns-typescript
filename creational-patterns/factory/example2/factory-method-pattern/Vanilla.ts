@@ -1,7 +1,9 @@
 import { IceCream } from './types';
 
 export default class VanillaIceCream implements IceCream {
-  flavor(): string {
-    return 'Vanilla Ice Cream';
+  flavor = 'Vanilla';
+
+  message(): void {
+    console.log(`You chose ${this.flavor} ice cream!`);
   }
 }

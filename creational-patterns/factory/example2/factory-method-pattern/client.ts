@@ -5,7 +5,7 @@ import StrawberryIceCreamFactory from './StrawberryIceCreamFactory';
 
 function clientCode(factory: IceCreamFactory) {
   const iceCream = factory.createIceCream();
-  console.log(iceCream.flavor());
+  iceCream.message();
 }
 
 const chocolateFactory = new ChocolateIceCreamFactory();

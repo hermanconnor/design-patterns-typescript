@@ -1,3 +1,4 @@
 export interface IceCream {
-  flavor(): string;
+  flavor: string;
+  message(): void;
 }
