@@ -65,6 +65,13 @@ console.log(`OBJECT1: ${JSON.stringify(OBJECT1)}`); // Since OBJECT2 was a deep 
 console.log(`OBJECT2: ${JSON.stringify(OBJECT2)}`);
 ```
 
+1. **Shallow Clone**:
+
+   - The shallow clone uses `Object.assign(Object.create(Object.getPrototypeOf(this)), this)`. This creates a new object that has the same prototype as the current instance and copies the properties from the current instance to the new object.
+
+2. **Deep Clone**:
+   - The deep clone uses `structuredClone(this)`, which creates a complete clone of the object and all its nested properties.
+
 ### Summary
 
 The Prototype pattern is useful for reducing the overhead of object creation, especially in cases where creating an instance from scratch is costly. By cloning, we can create new objects quickly based on existing ones.
