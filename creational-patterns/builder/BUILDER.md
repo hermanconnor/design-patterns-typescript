@@ -28,30 +28,6 @@ It’s particularly useful when:
 
 5. **Client**: This is the code that uses the builder (with or without the director) to create the product.
 
-### How It Works
-
-1. **Define the Product**: Start by creating the object that you want to build.
-
-2. **Create a Builder Interface**: Define methods for setting properties of the product.
-
-3. **Implement the Builder**: Create a concrete builder that implements the builder interface. This builder will keep track of the product being built.
-
-4. **Use the Builder**: You can use the builder directly or through a director to construct the product step by step.
-
-### Example in Everyday Terms
-
-Imagine you're building a sandwich:
-
-1. **Product**: The sandwich itself, which has bread, filling, and toppings.
-
-2. **Builder Interface**: Methods like `addBread`, `addFilling`, and `addToppings`.
-
-3. **Concrete Builder**: A specific builder for a "Club Sandwich" that knows how to stack the ingredients properly.
-
-4. **Director**: A chef who knows the right order to add the ingredients (e.g., bread, filling, then toppings).
-
-5. **Client**: You, the customer, who asks for a sandwich. You could either ask the chef (director) to make it for you or just tell the builder what you want.
-
 ### Advantages
 
 - **Flexibility**: You can create different variations of the product without changing the code that uses the builder.
@@ -69,10 +45,10 @@ Imagine you're building a sandwich:
 // Step 1: Define the Product
 class User {
   constructor(
-    public username: string,
-    public email?: string,
-    public phone?: string,
-    public address?: string,
+    public readonly username: string,
+    public readonly email?: string,
+    public readonly phone?: string,
+    public readonly address?: string,
   ) {}
 }
 
@@ -136,10 +112,10 @@ Here’s how you could add a Director to the previous example:
 ```typescript
 class User {
   constructor(
-    public username: string,
-    public email?: string,
-    public phone?: string,
-    public address?: string,
+    public readonly username: string,
+    public readonly email?: string,
+    public readonly phone?: string,
+    public readonly address?: string,
   ) {}
 }
 
@@ -152,7 +128,7 @@ interface UserBuilder {
 }
 
 class ConcreteUserBuilder implements UserBuilder {
-  private username: string;
+  private username: string = '';
   private email?: string;
   private phone?: string;
   private address?: string;
