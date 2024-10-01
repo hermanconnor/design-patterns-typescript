@@ -16,7 +16,7 @@ Welcome to my repository of Software Design Patterns implemented in TypeScript! 
 
 ## Introduction
 
-Design patterns are standard solutions to common problems in software design. This collection aims to provide developers with easy access to these patterns and demonstrate how to implement them effectively in TypeScript.
+Design patterns are standard solutions to common problems in software design. This repository includes implementations of several classic design patterns, allowing you to see how they can be applied in TypeScript. Whether you are a fellow developer or a potential employer, I hope this repository serves as a testament to my skills and dedication to continuous learning.
 
 ## Design Patterns Included
 
