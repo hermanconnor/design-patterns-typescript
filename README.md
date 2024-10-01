@@ -1,4 +1,3 @@
-````markdown
 # Design Patterns in TypeScript
 
 ## Overview
@@ -7,10 +6,13 @@ Welcome to my repository of Software Design Patterns implemented in TypeScript! 
 
 ## Table of Contents
 
-- [Introduction](#introduction)
-- [Design Patterns Included](#design-patterns-included)
-- [Getting Started](#getting-started)
-- [Usage](#usage)
+- [Design Patterns in TypeScript](#design-patterns-in-typescript)
+  - [Overview](#overview)
+  - [Table of Contents](#table-of-contents)
+  - [Introduction](#introduction)
+  - [Design Patterns Included](#design-patterns-included)
+  - [Getting Started](#getting-started)
+  - [Usage](#usage)
 
 ## Introduction
 
@@ -35,10 +37,10 @@ Each pattern is contained in its own directory with a detailed explanation and e
 To get started with this repository, follow these steps:
 
 1. **Clone the repository:**
+
    ```bash
    git clone https://github.com/hermanconnor/design-patterns-typescript.git
    ```
-````
 
 2. **Navigate to the project directory:**
 
