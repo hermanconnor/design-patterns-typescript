@@ -1,5 +1,9 @@
 # Creational Design Patterns
 
+## What are Creational Design Patterns
+
+Creational design patterns are a category of design patterns that deal with object creation mechanisms. They provide various ways to create objects while hiding the creation logic, making it more adaptable and reusable. These patterns help ensure that the system remains independent of how its objects are created, composed, and represented.
+
 ### Key Characteristics of Creational Design Patterns
 
 1. **Object Creation Control**: They abstract the instantiation process, allowing for more flexible object creation.
