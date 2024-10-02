@@ -30,6 +30,12 @@ This repository currently includes implementations of the following design patte
    - Builder
    - Prototype
 
+2. **Structural Patterns**
+
+   - Decorator
+
+3. **Behavioral Patterns**
+
 Each pattern is contained in its own directory with a detailed explanation and example code.
 
 ## Getting Started
