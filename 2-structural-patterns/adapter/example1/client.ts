@@ -4,7 +4,7 @@
 
 // STEP 1: Define the Target Interface
 // This interface represents the payment processing methods that our application expects.
-interface PaymentProcessor {
+interface IPaymentProcessor {
   pay(amount: number, currency: string): string;
 }
 
@@ -18,7 +18,7 @@ class LegacyPaymentService {
 
 // STEP 3: Implement the Adapter
 // The Adapter will translate the calls from the `PaymentProcessor` interface to the `LegacyPaymentService` interface.
-class PaymentAdapter implements PaymentProcessor {
+class PaymentAdapter implements IPaymentProcessor {
   private legacyPaymentService: LegacyPaymentService;
 
   constructor(legacyPaymentService: LegacyPaymentService) {
@@ -35,7 +35,7 @@ class PaymentAdapter implements PaymentProcessor {
 // Now, the client can use the `PaymentProcessor` interface without worrying about the underlying implementation.
 
 function makePayment(
-  processor: PaymentProcessor,
+  processor: IPaymentProcessor,
   amount: number,
   currency: string,
 ) {
