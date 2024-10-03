@@ -33,6 +33,7 @@ This repository currently includes implementations of the following design patte
 2. **Structural Patterns**
 
    - Decorator
+   - Adapter
 
 3. **Behavioral Patterns**
 
