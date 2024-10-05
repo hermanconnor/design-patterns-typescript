@@ -34,8 +34,10 @@ This repository currently includes implementations of the following design patte
 
    - Adapter
    - Bridge
+   - Composite
    - Decorator
    - Facade
+   - Flyweight
 
 3. **Behavioral Patterns**
 
