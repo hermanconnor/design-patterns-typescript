@@ -41,6 +41,7 @@ This repository currently includes implementations of the following design patte
    - Proxy
 
 3. **Behavioral Patterns**
+   - Command
 
 Each pattern is contained in its own directory with a detailed explanation and example code.
 
