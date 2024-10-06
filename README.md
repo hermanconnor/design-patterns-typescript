@@ -38,6 +38,7 @@ This repository currently includes implementations of the following design patte
    - Decorator
    - Facade
    - Flyweight
+   - Proxy
 
 3. **Behavioral Patterns**
 
