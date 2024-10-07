@@ -7,6 +7,18 @@ import SetFanSpeedCommand from './SetFanSpeedCommand';
 import SetTemperatureCommand from './SetTemperatureCommand';
 import Thermostat from './Thermostat';
 
+/**
+In this example, we'll implement a remote control system for a home automation setup. We'll be able to control different devices (like lights, fans, and a thermostat) using commands, and we can also implement a feature to schedule commands.
+
+Explanation of the Implementation:
+  1. Command Interface: The `ICommand` interface defines `execute` and `undo` methods.
+  2. Receiver Classes: The `Light`, `Fan`, and `Thermostat` classes handle the specific functionalities of each device.
+  3. Concrete Command Classes: Commands for turning the light on/off, setting the fan speed, and adjusting the thermostat are created. Each command class saves previous states to enable the undo functionality.
+  4. Invoker Class: `RemoteControl` manages command execution, undo/redo functionality, and scheduling commands.
+  5. Client Code: Demonstrates the creation of devices and commands, executing them, undoing an action, and scheduling a command.
+
+ */
+
 // STEP 5: Client code
 
 const light = new Light();
