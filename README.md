@@ -42,6 +42,8 @@ This repository currently includes implementations of the following design patte
 
 3. **Behavioral Patterns**
    - Command
+   - Chain of Responsibility
+   - Observer
 
 Each pattern is contained in its own directory with a detailed explanation and example code.
 
