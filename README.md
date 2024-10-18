@@ -48,6 +48,7 @@ This repository currently includes implementations of the following design patte
    - Mediator
    - Memento
    - Observer
+   - State
 
 Each pattern is contained in its own directory with a detailed explanation and example code.
 
@@ -80,4 +81,4 @@ To see an example of a specific design pattern, navigate to its respective folde
 npx ts-node path/to/client.ts
 ```
 
-Ensure you have [ts-node](https://typescritptlang.org/docs/handbook/release-notes/typescript-4-0.html#ts-node) installed if you haven't done so.
+Ensure you have [ts-node](https://www.npmjs.com/package/ts-node) installed if you haven't done so.
