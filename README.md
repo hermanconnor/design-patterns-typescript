@@ -49,6 +49,7 @@ This repository currently includes implementations of the following design patte
    - Memento
    - Observer
    - State
+   - Strategy
 
 Each pattern is contained in its own directory with a detailed explanation and example code.
 
