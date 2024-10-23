@@ -50,6 +50,8 @@ This repository currently includes implementations of the following design patte
    - Observer
    - State
    - Strategy
+   - Template Method
+   - Visitor
 
 Each pattern is contained in its own directory with a detailed explanation and example code.
 
