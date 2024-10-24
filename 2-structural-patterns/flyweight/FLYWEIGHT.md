@@ -22,73 +22,10 @@ The Flyweight design pattern is a structural pattern that aims to minimize memor
 
 Here is a simple example:
 
-```typescript
-interface IFlyweight {
-  code: number;
-}
-
-class Flyweight implements IFlyweight {
-  // The Concrete Flyweight holding intrinsic state
-  constructor(public code: number) {}
-}
-
-class FlyweightFactory {
-  // Using a Map for caching Flyweights
-  private static flyweights: Map<number, Flyweight> = new Map();
-
-  static getFlyweight(code: number): Flyweight {
-    // Check if the Flyweight already exists in the cache
-    if (!FlyweightFactory.flyweights.has(code)) {
-      FlyweightFactory.flyweights.set(code, new Flyweight(code));
-    }
-    return FlyweightFactory.flyweights.get(code)!; // Non-null assertion since we checked existence
-  }
-
-  static getCount(): number {
-    // Return the number of flyweights in the cache
-    return FlyweightFactory.flyweights.size;
-  }
-}
-
-class AppContext {
-  // Holds references to the flyweights in a specific order
-  private codes: number[] = [];
-
-  constructor(codes: string) {
-    // Convert characters to their ASCII codes
-    for (let i = 0; i < codes.length; i++) {
-      this.codes.push(codes.charCodeAt(i));
-    }
-  }
-
-  output(): string {
-    // The context-specific output that uses flyweights
-    let result = '';
-    this.codes.forEach((code) => {
-      result += String.fromCharCode(FlyweightFactory.getFlyweight(code).code);
-    });
-    return result;
-  }
-}
-
-// The Client
-const appContext = new AppContext('abracadabra');
-
-// Use flyweights in a context
-console.log(appContext.output()); // Outputs: abracadabra
-
-console.log(`'abracadabra' has ${'abracadabra'.length} letters`);
-console.log(`FlyweightFactory has ${FlyweightFactory.getCount()} flyweights`);
-```
-
-### Example 2
-
-Here is a more detailed example:
-
 #### Step 1: Define the Flyweight Interface
 
 ```typescript
-interface Shape {
+interface IShape {
   draw(extrinsicState: { x: number; y: number }): void;
 }
 ```
@@ -96,7 +33,7 @@ interface Shape {
 #### Step 2: Create Concrete Flyweight Classes
 
 ```typescript
-class Circle implements Shape {
+class Circle implements IShape {
   constructor(private color: string) {}
 
   draw(extrinsicState: { x: number; y: number }): void {
@@ -106,7 +43,7 @@ class Circle implements Shape {
   }
 }
 
-class Square implements Shape {
+class Square implements IShape {
   constructor(private color: string) {}
 
   draw(extrinsicState: { x: number; y: number }): void {
@@ -121,10 +58,11 @@ class Square implements Shape {
 
 ```typescript
 class ShapeFactory {
-  private shapes: { [key: string]: Shape } = {};
+  private shapes: { [key: string]: IShape } = {};
 
-  getShape(color: string, type: string): Shape {
+  getShape(color: string, type: string): IShape {
     const key = `${color}_${type}`;
+
     if (!this.shapes[key]) {
       if (type === 'circle') {
         this.shapes[key] = new Circle(color);
@@ -159,12 +97,11 @@ class GraphicsEditor {
   }
 }
 
-// Usage
 const editor = new GraphicsEditor();
 editor.drawShapes();
 ```
 
-### Explanation of the Code
+### Explanation of the above code
 
 1. **Shape Interface**: Defines a method for drawing shapes that requires extrinsic state (position).
 
