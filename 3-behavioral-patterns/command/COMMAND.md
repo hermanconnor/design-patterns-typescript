@@ -18,6 +18,12 @@ The Command Pattern is a behavioral design pattern that turns a request into a s
 - **Undo/Redo functionality**: Commands can be stored, allowing for easy undo and redo operations.
 - **Logging**: Commands can be logged for auditing or debugging purposes.
 
+### When to Use
+
+- When you need to parameterize objects by an action to perform.
+- When you want to queue operations, schedule tasks, or implement logging.
+- When you need support for undoable operations.
+
 ### Implementation Steps
 
 1. **Define a Command interface**.
@@ -139,12 +145,6 @@ invoker.execute('3'); // Command not recognized
 4. **Invoker Class**: The `Invoker` class manages a collection of commands. It uses a `Map` to store commands associated with string keys (command names). The `register()` method allows commands to be added to the invoker, and the `execute()` method retrieves and executes the command associated with a given key. If the command is not found, it logs an error message.
 
 5. **Client Code**: In the client code, an instance of `Receiver` is created. Two command instances (`command1` and `command2`) are created and associated with the `Receiver`. An instance of `Invoker` is created, and the commands are registered using string keys. The client then calls the `execute()` method on the `Invoker` with different keys to trigger the associated commands. This demonstrates how to execute tasks without knowing the specifics of how they are performed.
-
-### When to Use
-
-- When you need to parameterize objects by an action to perform.
-- When you want to queue operations, schedule tasks, or implement logging.
-- When you need support for undoable operations.
 
 ### Summary
 
