@@ -12,15 +12,15 @@ The Chain of Responsibility (CoR) is a behavioral design pattern that allows a r
 
 3. **Client**: The client sends requests to the chain of handlers.
 
-### Benefits
+### When to Use the Chain of Responsibility Pattern
 
-- **Decoupling**: The sender of a request doesn't need to know which handler will process it.
-- **Flexibility**: You can add or remove handlers dynamically at runtime.
-- **Single Responsibility**: Each handler has a single responsibility and can focus on its specific type of request.s
+- When you want to avoid coupling the sender to a specific receiver.
+- When multiple handlers can handle a request, but you don’t know which one will.
+- When you want to add or modify handlers without affecting the client code.
 
 ### Example
 
-Here's a simple implementation:
+Here's a simple example:
 
 ```typescript
 // Handler Interface
@@ -107,6 +107,12 @@ requests.forEach((request) => {
 3. **Concrete Handlers**: Each specific handler (e.g., `BillingHandler`, `TechnicalSupportHandler`, `GeneralInquiryHandler`) overrides the `handle` method to provide specific logic for request handling.
 
 4. **Client Code**: Sets up the chain of handlers and sends various requests to see which handler processes them.
+
+### Benefits
+
+- **Decoupling**: The sender of a request doesn't need to know which handler will process it.
+- **Flexibility**: You can add or remove handlers dynamically at runtime.
+- **Single Responsibility**: Each handler has a single responsibility and can focus on its specific type of request.
 
 ### Summary
 
