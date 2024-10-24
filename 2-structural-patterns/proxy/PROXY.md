@@ -4,140 +4,108 @@
 
 The Proxy design pattern is a structural design pattern that provides an object representing another object. The proxy acts as an intermediary, controlling access to the target object, which can be useful for various purposes such as lazy loading, access control, logging, or monitoring.
 
-### Key Concepts
+### Key Concepts of Proxy Design Pattern
 
-1. **Proxy**: The class that implements the same interface as the real object and contains a reference to it. It can control access and add additional functionality.
-2. **Real Subject**: The actual object that performs the operations and contains the core functionality.
+1. **Subject Interface**: This is an interface that both the Real Subject and Proxy implement. It defines the operations that can be performed.
 
-3. **Client**: The class that interacts with the proxy rather than the real subject.
+2. **Real Subject**: This is the actual object that performs the real operations. It implements the Subject interface.
 
-### Use Cases
+3. **Proxy**: This class also implements the Subject interface and holds a reference to the Real Subject. It can add additional functionality before or after delegating calls to the Real Subject.
 
-- **Virtual Proxy**: Delays the creation of a resource until it's actually needed (lazy loading).
-- **Protection Proxy**: Controls access to the real subject, allowing certain clients to access it while restricting others.
-- **Caching Proxy**: Caches the results of expensive operations to optimize performance.
+### Types of Proxies
 
-### Advantages
+1. **Virtual Proxy**: Delays the creation of a resource-intensive object until it is needed.
+2. **Remote Proxy**: Represents an object that is in a different address space (e.g., on a different server).
+3. **Protection Proxy**: Controls access to the Real Subject based on access rights.
 
-- **Control**: Provides a way to control access to the real object.
-- **Lazy Loading**: Can delay instantiation of an object until it's needed.
-- **Separation of Concerns**: Keeps the proxy logic separate from the core business logic.
+### When to Use the Proxy Pattern
 
-### Disadvantages
-
-- **Increased Complexity**: Adds an additional layer that may complicate the design.
-- **Performance Overhead**: Can introduce additional latency, especially if the proxy performs additional operations.
+- When you need to control access to an object.
+- When you want to perform additional operations when accessing an object (like logging).
+- When you want to defer the creation of an expensive object.
 
 ### Example
 
-Here is a simple example:
+Here is a simple example of a virtual proxy that loads images. The proxy will delay loading the actual image until it is requested.
+
+#### Step 1: Define the Subject Interface
 
 ```typescript
-interface ISubject {
-  request(): number[];
+interface IImage {
+  display(): void;
 }
+```
 
-class RealSubject implements ISubject {
-  enormousData: number[];
+#### Step 2: Implement the Real Subject
 
-  constructor() {
-    // Hypothetical enormous amounts of data
-    this.enormousData = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]; // Example of larger data
+```typescript
+class RealImage implements IImage {
+  private filename: string;
+
+  constructor(filename: string) {
+    this.filename = filename;
+    this.loadImageFromDisk();
   }
 
-  request() {
-    return this.enormousData;
+  private loadImageFromDisk(): void {
+    console.log(`Loading image: ${this.filename}`);
+  }
+
+  public display(): void {
+    console.log(`Displaying image: ${this.filename}`);
   }
 }
+```
 
-class ProxySubject implements ISubject {
-  enormousData: number[];
-  realSubject: RealSubject;
+#### Step 3: Implement the Proxy
 
-  constructor() {
-    this.enormousData = [];
-    this.realSubject = new RealSubject();
+```typescript
+class ProxyImage implements IImage {
+  private realImage: RealImage | null;
+  private filename: string;
+
+  constructor(filename: string) {
+    this.filename = filename;
+    this.realImage = null;
   }
 
-  request() {
-    if (this.enormousData.length === 0) {
-      console.log('pulling data from RealSubject');
-      this.enormousData = this.realSubject.request();
-      return this.enormousData;
+  public display(): void {
+    if (this.realImage === null) {
+      this.realImage = new RealImage(this.filename);
     }
-    console.log('pulling data from Proxy cache');
-    return this.enormousData;
-  }
-}
-
-// The Client
-const PROXY_SUBJECT = new ProxySubject();
-// Use the Subject. First time it will load the enormous amounts of data
-console.log(PROXY_SUBJECT.request());
-// Use the Subject again, but this time it retrieves it from the local cache
-console.log(PROXY_SUBJECT.request());
-```
-
-### Example 2
-
-Here is another simple example with steps:
-
-1. **Define the Subject Interface**:
-
-```typescript
-interface Subject {
-  request(): void;
-}
-```
-
-2. **Create the Real Subject**:
-
-```typescript
-class RealSubject implements Subject {
-  public request(): void {
-    console.log('RealSubject: Handling request.');
+    this.realImage.display();
   }
 }
 ```
 
-3. **Create the Proxy**:
+#### Step 4: Using the Proxy
 
 ```typescript
-class Proxy implements Subject {
-  private realSubject: RealSubject;
-
-  constructor() {
-    this.realSubject = new RealSubject();
-  }
-
-  public request(): void {
-    console.log('Proxy: Checking access prior to firing a real request.');
-    this.realSubject.request();
-    console.log('Proxy: Logging the request.');
-  }
-}
-```
-
-4. **Client Code**:
-
-```typescript
-function clientCode(subject: Subject) {
-  subject.request();
+function clientCode(image: IImage): void {
+  // The first call will load the image from disk
+  image.display();
+  // Subsequent calls will use the cached image
+  image.display();
 }
 
-const proxy = new Proxy();
-clientCode(proxy);
+// Example Usage
+const image1: IImage = new ProxyImage('photo1.jpg');
+clientCode(image1); // Loading image on first call, displaying on second
 ```
 
-### Explanation of the above Code
+### Explanation of the code above
 
-- **Subject Interface**: Defines the common interface for both the real subject and the proxy.
-- **RealSubject Class**: Implements the core functionality of the system.
+1. **Subject Interface**: The `IImage` interface defines the `display` method.
+2. **Real Subject**: The `RealImage` class implements the `IImage` interface and loads the image from disk when constructed.
+3. **Proxy**: The `ProxyImage` class holds a reference to the `RealImage` but only creates it when `display` is called for the first time.
+4. **Client Code**: Demonstrates using the proxy, showing how the real image is only loaded when necessary.
 
-- **Proxy Class**: Holds a reference to the `RealSubject` and implements the same interface. It can add additional logic, like access checks or logging, before or after calling the real subject's method.
+### Benefits of Using Proxy
 
-- **Client Code**: Uses the `Subject` interface to interact with the proxy without needing to know about the real subject.
+- **Lazy Loading**: The real object is created only when needed, saving resources.
+- **Control Access**: The proxy can enforce access rules.
+- **Separation of Concerns**: It can handle cross-cutting concerns like logging and security separately from the business logic.
 
 ### Summary
 
-The Proxy design pattern is a powerful tool for controlling access to objects and adding additional functionality without modifying the original object. It can be used in various scenarios, such as lazy loading, access control, and logging. You should consider using the Proxy pattern when you need a layer of control over how objects are accessed or when you want to add functionality without modifying the underlying object. It’s particularly effective when you want to enhance performance, manage access, or simplify interactions with complex objects.
+The Proxy Design Pattern is a powerful tool for managing object interactions in a flexible and controlled manner. Understanding and implementing it can greatly enhance the architecture of your applications, especially when dealing with resource-intensive or access-controlled objects.
