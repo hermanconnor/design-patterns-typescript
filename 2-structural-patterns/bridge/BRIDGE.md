@@ -14,222 +14,103 @@ The Bridge design pattern is a structural pattern that aims to separate an abstr
 
 4. **Concrete Implementor**: This implements the implementor interface and defines the concrete implementations of the operations.
 
-### Benefits of the Bridge Pattern
+### When to Use the Bridge Pattern
 
-- **Decoupling**: It decouples the abstraction from its implementation, allowing both to vary independently.
-- **Improved Flexibility**: You can switch implementations at runtime.
-- **Easy Maintenance**: Changes to the implementation do not require changes to the abstraction.
+- When you want to decouple an abstraction from its implementation so that both can vary independently.
+- When you want to avoid a proliferation of classes that results from a combination of interfaces and implementations.
+- When you need to improve the extensibility of a system by allowing you to change implementation without affecting the client code.
 
 ### Example
 
-Here is a simple example:
+Here's a simple example where we have shapes that can be drawn in different colors. We’ll use the Bridge Pattern to separate the shape abstraction from the color implementation.
+
+#### Step 1: Define the Implementor Interface
 
 ```typescript
-interface IAbstraction {
-  method(value: string[]): void;
-}
-
-abstract class BaseAbstraction implements IAbstraction {
-  protected implementer: IImplementer;
-
-  constructor(implementer: IImplementer) {
-    this.implementer = implementer;
-  }
-
-  abstract method(value: string[]): void;
-}
-
-class RefinedAbstractionA extends BaseAbstraction {
-  method(value: string[]) {
-    console.log('RefinedAbstractionA processing:');
-    this.implementer.method(value);
-  }
-}
-
-class RefinedAbstractionB extends BaseAbstraction {
-  method(value: string[]) {
-    console.log('RefinedAbstractionB processing:');
-    this.implementer.method(value);
-  }
-}
-
-interface IImplementer {
-  method(value: string[]): void;
-}
-
-class ConcreteImplementerA implements IImplementer {
-  method(value: string[]) {
-    console.log('ConcreteImplementerA output:', value);
-  }
-}
-
-class ConcreteImplementerB implements IImplementer {
-  method(value: string[]) {
-    console.log('ConcreteImplementerB output:');
-    value.forEach((v) => console.log(v));
-  }
-}
-
-// The Client
-const VALUES = ['a', 'b', 'c'];
-
-const abstractionA = new RefinedAbstractionA(new ConcreteImplementerA());
-abstractionA.method(VALUES);
-
-const abstractionB = new RefinedAbstractionB(new ConcreteImplementerB());
-abstractionB.method(VALUES);
-```
-
-### Example 2
-
-In this example, imagine you are designing a graphic drawing application where you want to represent shapes (like circles and squares) and allow them to be drawn in different ways (like in a vector format or raster format).
-
-Step 1. **Define the Implementor Interface**
-
-```typescript
-interface DrawingAPI {
-  drawCircle(x: number, y: number, radius: number): void;
-  drawSquare(x: number, y: number, side: number): void;
+interface IColor {
+  applyColor(): void;
 }
 ```
 
-Step 2. **Create Concrete Implementors**
+#### Step 2: Implement Concrete Implementors
 
 ```typescript
-// Concrete Implementor 1
-class VectorAPI implements DrawingAPI {
-  drawCircle(x: number, y: number, radius: number): void {
-    console.log(`Vector Circle at (${x}, ${y}) with radius ${radius}`);
-  }
-
-  drawSquare(x: number, y: number, side: number): void {
-    console.log(`Vector Square at (${x}, ${y}) with side ${side}`);
+class Red implements IColor {
+  public applyColor(): void {
+    console.log('Applying red color.');
   }
 }
 
-// Concrete Implementor 2
-class RasterAPI implements DrawingAPI {
-  drawCircle(x: number, y: number, radius: number): void {
-    console.log(`Raster Circle at (${x}, ${y}) with radius ${radius}`);
-  }
-
-  drawSquare(x: number, y: number, side: number): void {
-    console.log(`Raster Square at (${x}, ${y}) with side ${side}`);
+class Green implements IColor {
+  public applyColor(): void {
+    console.log('Applying green color.');
   }
 }
 ```
 
-Step 3. **Define the Abstraction**
+#### Step 3: Define the Abstraction
 
 ```typescript
-// Abstraction
 abstract class Shape {
-  protected drawingAPI: DrawingAPI;
+  protected color: IColor;
 
-  constructor(drawingAPI: DrawingAPI) {
-    this.drawingAPI = drawingAPI;
+  constructor(color: IColor) {
+    this.color = color;
   }
 
-  abstract draw(): void; // Implemented in refined abstractions
-  abstract resize(by: double): void; // To resize shapes
+  public abstract draw(): void;
 }
 ```
 
-Step 4. **Create Refined Abstractions**
+#### Step 4: Implement Refined Abstractions
 
 ```typescript
-// Refined Abstraction 1
 class Circle extends Shape {
-  private x: number;
-  private y: number;
-  private radius: number;
-
-  constructor(x: number, y: number, radius: number, drawingAPI: DrawingAPI) {
-    super(drawingAPI);
-    this.x = x;
-    this.y = y;
-    this.radius = radius;
-  }
-
-  draw(): void {
-    this.drawingAPI.drawCircle(this.x, this.y, this.radius);
-  }
-
-  resize(by: number): void {
-    this.radius *= by;
+  public draw(): void {
+    console.log('Drawing a circle.');
+    this.color.applyColor();
   }
 }
 
-// Refined Abstraction 2
 class Square extends Shape {
-  private x: number;
-  private y: number;
-  private side: number;
-
-  constructor(x: number, y: number, side: number, drawingAPI: DrawingAPI) {
-    super(drawingAPI);
-    this.x = x;
-    this.y = y;
-    this.side = side;
-  }
-
-  draw(): void {
-    this.drawingAPI.drawSquare(this.x, this.y, this.side);
-  }
-
-  resize(by: number): void {
-    this.side *= by;
+  public draw(): void {
+    console.log('Drawing a square.');
+    this.color.applyColor();
   }
 }
 ```
 
-Step 5. **Using the Bridge Pattern**
+#### Step 5: Using the Bridge Pattern
 
 ```typescript
 function clientCode() {
-  const vectorAPI = new VectorAPI();
-  const rasterAPI = new RasterAPI();
+  const red: IColor = new Red();
+  const green: IColor = new Green();
 
-  const circle = new Circle(5, 10, 15, vectorAPI);
-  const square = new Square(20, 30, 10, rasterAPI);
+  const circle: Shape = new Circle(red);
+  circle.draw(); // Drawing a circle. Applying red color.
 
-  circle.draw(); // Vector Circle at (5, 10) with radius 15
-  square.draw(); // Raster Square at (20, 30) with side 10
-
-  circle.resize(2);
-  circle.draw(); // Vector Circle at (5, 10) with radius 30
+  const square: Shape = new Square(green);
+  square.draw(); // Drawing a square. Applying green color.
 }
 
 clientCode();
 ```
 
-In this example, we defined a `DrawingAPI` interface that acts as the implementor, with concrete implementations in `VectorAPI` and `RasterAPI`. The `Shape` class serves as the abstraction, and `Circle` and `Square` are refined abstractions that use the drawing APIs.
+### Explanation of the above code
 
-This setup allows you to easily add new shapes or drawing methods without modifying the existing code, showcasing the flexibility and decoupling provided by the Bridge design pattern.
+1. **Implementor Interface**: The `IColor` interface defines the `applyColor` method that all color implementations must implement.
+2. **Concrete Implementors**: `Red` and `Green` classes provide concrete implementations of the `IColor` interface.
+3. **Abstraction**: The `Shape` abstract class defines the high-level operations for shapes and holds a reference to a `Color` object.
+4. **Refined Abstractions**: `Circle` and `Square` extend `Shape` and implement the `draw` method, which utilizes the `IColor` object.
+5. **Client Code**: Demonstrates how to create shapes with different colors, showing how the bridge pattern allows flexibility in defining shape and color combinations.
 
-### When to use
+### Benefits of Using Bridge
 
-The Bridge pattern is particularly useful in the following scenarios:
-
-1. **When you want to decouple an abstraction from its implementation**:
-
-   - If you anticipate that both the abstraction and the implementation might evolve independently, the Bridge pattern helps to separate them. This allows changes in one without affecting the other.
-
-2. **When you have multiple variations of an abstraction and multiple variations of implementations**:
-
-   - If you find yourself needing to manage different combinations of abstractions and implementations (like various shapes and rendering methods), the Bridge pattern helps reduce complexity by preventing an explosion of subclasses.
-
-3. **When you want to avoid a permanent binding between an abstraction and its implementation**:
-
-   - If you want to allow the implementation to change at runtime or want to switch implementations dynamically, the Bridge pattern is a good fit.
-
-4. **When you want to hide implementation details from the client**:
-
-   - If you want to provide a simple interface for the client while keeping the underlying implementation complex or varied, the Bridge pattern can help encapsulate that complexity.
-
-5. **When you need to share implementations across different abstractions**:
-   - If multiple abstractions need to use the same implementation, the Bridge pattern facilitates this sharing without forcing the abstractions to be tightly coupled to the implementation.
+- **Decoupling**: The abstraction can vary independently from its implementation, making the system more flexible.
+- **Extensibility**: New implementations and abstractions can be added without modifying existing code, promoting scalability.
+- **Reduced Class Explosion**: Avoids creating a multitude of subclasses for every combination of abstraction and implementation.
 
 ### Summary
 
-The Bridge pattern is a powerful way to separate concerns in software design, promoting flexibility and maintainability. It is particularly beneficial in scenarios where both abstractions and their implementations are likely to change or evolve over time.
+The Bridge Pattern is a powerful design pattern that enhances the flexibility and scalability of systems by separating abstractions from their implementations. It allows for independent variation and promotes cleaner, more maintainable code. This pattern is particularly useful in situations where you have multiple dimensions of variability, such as different types of objects and behaviors associated with them.
