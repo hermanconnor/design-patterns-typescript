@@ -6,89 +6,19 @@ The Facade pattern is a structural design pattern that provides a simplified int
 
 ### Key Concepts
 
-1. **Purpose**: The primary goal of the Facade pattern is to provide a simple interface to a complex subsystem. This helps to reduce the dependency of the client code on the complexities of the subsystem.
+1. **Facade**: This class provides a simplified interface that clients can use to interact with the subsystem. It delegates calls to the appropriate classes in the subsystem.
 
-2. **Use Cases**:
+2. **Subsystem Classes**: These are the classes that implement the actual functionality of the system. They can be complex and may have intricate interactions.
 
-   - When you want to simplify interactions with a complex system.
-   - When you need to reduce the number of dependencies between subsystems.
-   - When you want to provide a unified interface to a set of interfaces in a subsystem.
+### When to use
 
-3. **Components**:
-
-   - **Facade**: The class that provides the simplified interface.
-   - **Subsystem Classes**: The complex classes that the facade interacts with.
-
-4. **Advantages**:
-
-   - Simplifies the interface to a subsystem.
-   - Reduces dependencies on the complex subsystem.
-   - Can make the code easier to manage and maintain.
-
-5. **Disadvantages**:
-   - Might lead to a situation where the facade becomes a "god class" if not managed properly.
-   - Can hide the underlying complexity, making debugging more difficult if issues arise.
+- When you want to provide a simple interface to a complex system.
+- When you want to reduce dependencies on external code.
+- When you want to provide a higher-level interface that makes the subsystem easier to use.
 
 ### Example
 
 Here is a simple example:
-
-```typescript
-class SubSystemClassA {
-  // A hypothetically complicated class
-  method(): string {
-    return 'A';
-  }
-}
-
-class SubSystemClassB {
-  // A hypothetically complicated class
-  method(value: string): string {
-    return value;
-  }
-}
-
-class SubSystemClassC {
-  // A hypothetically complicated class
-  method(value: { C: number[] }): { C: number[] } {
-    return value;
-  }
-}
-
-class Facade {
-  // A simplified facade offering the services of subsystems
-  subSystemClassA(): string {
-    // Uses the subsystems method
-    return new SubSystemClassA().method();
-  }
-
-  subSystemClassB(value: string): string {
-    // Uses the subsystems method
-    return new SubSystemClassB().method(value);
-  }
-
-  subSystemClassC(value: { C: number[] }): { C: number[] } {
-    // Uses the subsystems method
-    return new SubSystemClassC().method(value);
-  }
-}
-
-// The Client
-// Calling potentially complicated subsystems directly
-console.log(new SubSystemClassA().method());
-console.log(new SubSystemClassB().method('B'));
-console.log(new SubSystemClassC().method({ C: [1, 2, 3] }));
-
-// or using the simplified facade instead
-const FACADE = new Facade();
-console.log(FACADE.subSystemClassA());
-console.log(FACADE.subSystemClassB('B'));
-console.log(FACADE.subSystemClassC({ C: [1, 2, 3] }));
-```
-
-### Example 2
-
-In this example, imagine we have a home theater system with multiple components: a `DVDPlayer`, a `Projector`, and an `Amplifier`. The `HomeTheaterFacade` will provide a simplified interface to control these components.
 
 #### Step 1: Define Subsystem Classes
 
@@ -191,12 +121,6 @@ const homeTheater = new HomeTheaterFacade(dvdPlayer, projector, amplifier);
 homeTheater.watchMovie('John Wick');
 homeTheater.endMovie();
 ```
-
-### When to Use
-
-- When a system is complex and has many interacting parts.
-- When you want to decouple clients from the complexities of the subsystem.
-- When you need to provide a more readable and understandable interface.
 
 ### Summary
 
