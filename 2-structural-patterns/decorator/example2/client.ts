@@ -1,20 +1,35 @@
-import ConsoleLogger from './ConsoleLogger';
-import { LogLevelLogger, TimestampLogger } from './logger.decorators';
-import { ILogger } from './logger.interface';
+import EmailNotification from './EmailNotification';
+import {
+  FormattingDecorator,
+  NotificationLoggingDecorator,
+} from './notification.decorators';
+import { INotification } from './notification.interface';
+import SMSNotification from './SMSNotification';
 
 function main() {
-  let logger: ILogger = new ConsoleLogger();
+  // Basic Email Notification
+  let emailNotification: INotification = new EmailNotification();
+  emailNotification.send('Hello, User!');
 
-  // Log a simple message
-  logger.log('This is a simple log message.');
+  // Email Notification with Logging
+  emailNotification = new NotificationLoggingDecorator(emailNotification);
+  emailNotification.send('Hello, User!');
 
-  // Add timestamp
-  logger = new TimestampLogger(logger);
-  logger.log('This log message includes a timestamp.');
+  // Email Notification with Formatting
+  emailNotification = new FormattingDecorator(emailNotification);
+  emailNotification.send('Hello, User!');
 
-  // Add log level
-  logger = new LogLevelLogger(logger, 'INFO');
-  logger.log('This log message includes a timestamp and log level.');
+  // Basic SMS Notification
+  let smsNotification: INotification = new SMSNotification();
+  smsNotification.send('Your code is 1234');
+
+  // SMS Notification with Logging
+  smsNotification = new NotificationLoggingDecorator(smsNotification);
+  smsNotification.send('Your code is 1234');
+
+  // SMS Notification with Formatting
+  smsNotification = new FormattingDecorator(smsNotification);
+  smsNotification.send('Your code is 1234');
 }
 
 main();

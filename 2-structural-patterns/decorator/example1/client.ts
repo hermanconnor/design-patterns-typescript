@@ -1,15 +1,20 @@
-import SimpleCoffee from './SimpleCoffee';
-import { MilkDecorator, SugarDecorator } from './decorators';
+import ConsoleLogger from './ConsoleLogger';
+import { LogLevelLogger, TimestampLogger } from './logger.decorators';
+import { ILogger } from './logger.interface';
 
 function main() {
-  let myCoffee = new SimpleCoffee();
-  console.log(`${myCoffee.description()} costs $${myCoffee.cost()}`);
+  let logger: ILogger = new ConsoleLogger();
 
-  myCoffee = new MilkDecorator(myCoffee);
-  console.log(`${myCoffee.description()} costs $${myCoffee.cost()}`);
+  // Log a simple message
+  logger.log('This is a simple log message.');
 
-  myCoffee = new SugarDecorator(myCoffee);
-  console.log(`${myCoffee.description()} costs $${myCoffee.cost()}`);
+  // Add timestamp
+  logger = new TimestampLogger(logger);
+  logger.log('This log message includes a timestamp.');
+
+  // Add log level
+  logger = new LogLevelLogger(logger, 'INFO');
+  logger.log('This log message includes a timestamp and log level.');
 }
 
 main();
