@@ -103,7 +103,7 @@ group2.add(group1); // Adding a group into another group
 group2.draw();
 ```
 
-#### In the above code
+#### Explanation of the above code
 
 1. **Shape Interface**: This defines the common interface for all shapes.
 2. **Circle and Rectangle Classes**: These are leaf classes that implement the `Shape` interface and provide specific implementations for the `draw` method.
