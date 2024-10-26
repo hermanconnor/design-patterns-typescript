@@ -1,14 +1,8 @@
-import ConcretePizzaBuilder from './ConcretePizzaBuilder';
-import PizzaDirector from './PizzaDirector';
+import CarDirector from './CarDirector';
+import SportsCarBuilder from './SportsCarBuilder';
 
-const builder = new ConcretePizzaBuilder();
-const director = new PizzaDirector(builder);
+const builder = new SportsCarBuilder();
+const director = new CarDirector(builder);
+const sportsCar = director.constructSportsCar();
 
-director.makeMargheritaPizza();
-const margheritaPizza = builder.build();
-console.log(margheritaPizza.describe());
-
-builder.build(); // Reset builder for next pizza
-director.makePepperoniPizza();
-const pepperoniPizza = builder.build();
-console.log(pepperoniPizza.describe());
+console.log(sportsCar.specifications());

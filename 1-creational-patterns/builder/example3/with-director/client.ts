@@ -1,8 +1,12 @@
-import CarDirector from './CarDirector';
-import SportsCarBuilder from './SportsCarBuilder';
+import ComputerBuilder from './ComputerBuilder';
+import ComputerDirector from './ComputerDirector';
+import { IComputer, IComputerBuilder } from './interfaces';
 
-const builder = new SportsCarBuilder();
-const director = new CarDirector(builder);
-const sportsCar = director.constructSportsCar();
+const builder: IComputerBuilder = new ComputerBuilder();
+const director = new ComputerDirector(builder);
 
-console.log(sportsCar.specifications());
+const gamingPC: IComputer = director.buildGamingPC();
+const officePC: IComputer = director.buildOfficePC();
+
+console.log(gamingPC);
+console.log(officePC);

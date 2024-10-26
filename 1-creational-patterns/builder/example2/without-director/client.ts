@@ -1,16 +1,6 @@
-import ConcretePizzaBuilder from './ConcretePizzaBuilder';
+import SportsCarBuilder from './SportsCarBuilder';
 
-const builder = new ConcretePizzaBuilder();
+const builder = new SportsCarBuilder();
+const sportsCar = builder.setWheels(4).setEngine('V8').setColor('Red').build();
 
-// Construct a Margherita Pizza
-builder.setSize('Medium');
-builder.addCheese();
-const margheritaPizza = builder.build();
-console.log(margheritaPizza.describe());
-
-// Construct a Pepperoni Pizza
-builder.setSize('Large');
-builder.addCheese();
-builder.addPepperoni();
-const pepperoniPizza = builder.build();
-console.log(pepperoniPizza.describe());
+console.log(sportsCar.specifications());

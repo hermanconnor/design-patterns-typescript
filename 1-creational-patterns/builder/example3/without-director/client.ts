@@ -1,6 +1,18 @@
-import SportsCarBuilder from './SportsCarBuilder';
+import ComputerBuilder from './ComputerBuilder';
+import { IComputer } from './interfaces';
 
-const builder = new SportsCarBuilder();
-const sportsCar = builder.setWheels(4).setEngine('V8').setColor('Red').build();
+const gamingPC: IComputer = new ComputerBuilder()
+  .setCPU('Intel i9')
+  .setRAM('32GB')
+  .setGPU('NVIDIA RTX 3080')
+  .setStorage('1TB SSD')
+  .build();
 
-console.log(sportsCar.specifications());
+const officePC: IComputer = new ComputerBuilder()
+  .setCPU('Intel i5')
+  .setRAM('16GB')
+  .setStorage('512GB HDD')
+  .build();
+
+console.log(gamingPC);
+console.log(officePC);

@@ -1,8 +1,14 @@
-import Car from './Car';
+export interface IComputer {
+  cpu: string;
+  ram: string;
+  gpu: string;
+  storage: string;
+}
 
-export interface ICarBuilder {
-  setWheels(wheels: number): this;
-  setEngine(engine: string): this;
-  setColor(color: string): this;
-  build(): Car;
+export interface IComputerBuilder {
+  setCPU(cpu: string): this;
+  setRAM(ram: string): this;
+  setGPU(gpu: string): this;
+  setStorage(storage: string): this;
+  build(): IComputer;
 }

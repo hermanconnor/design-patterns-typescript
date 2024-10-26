@@ -1,9 +1,8 @@
-import Pizza from './Pizza';
+import Car from './Car';
 
-export interface IPizzaBuilder {
-  setSize(size: string): void;
-  addCheese(): void;
-  addPepperoni(): void;
-  addMushrooms(): void;
-  build(): Pizza;
+export interface ICarBuilder {
+  setWheels(wheels: number): this;
+  setEngine(engine: string): this;
+  setColor(color: string): this;
+  build(): Car;
 }
