@@ -25,6 +25,11 @@ The Factory design pattern is a creational design pattern used to create objects
 5. **Client Code**:
    - This is the code that uses the factory to create objects. The client code interacts with the factory instead of directly instantiating the products.
 
+### Type of Factory Pattern:
+
+- **Simple Factory**: It centralizes object creation in a single factory method that returns specific types based on input parameters. This method does not rely on inheritance or abstract classes.
+- **Factory Method**: This pattern relies on an abstract class (creator) that defines a method for creating objects, allowing subclasses to override that method to create specific objects. This adds a layer of abstraction and flexibility.
+
 ### When to Use the Factory Pattern
 
 - When a class cannot anticipate the type of objects it needs to create.

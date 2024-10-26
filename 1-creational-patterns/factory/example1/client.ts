@@ -1,10 +1,8 @@
-import ChairFactory from './ChairFactory';
+import { IVehicle } from './interfaces';
+import VehicleFactory from './VehicleFactory';
 
-const small = ChairFactory.getChair('small');
-console.log('SMALL:', small.getDimensions());
+const car: IVehicle = VehicleFactory.createVehicle('car');
+car.drive(); // Output: Driving a car
 
-const medium = ChairFactory.getChair('medium');
-console.log('MEDIUM:', medium.getDimensions());
-
-const big = ChairFactory.getChair('big');
-console.log('BIG:', big.getDimensions());
+const truck: IVehicle = VehicleFactory.createVehicle('truck');
+truck.drive(); // Output: Driving a truck
