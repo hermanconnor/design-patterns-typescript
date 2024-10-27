@@ -1,22 +1,20 @@
-import ModernFurnitureFactory from './factories/ModernFurnitureFactory';
-import VictorianFurnitureFactory from './factories/VictorianFurnitureFactory';
-import FurnitureShowroom from './FurnitureShowroom';
-import IFurnitureFactory from './interfaces/FurnitureFactory';
+import { IVehicleFactory } from './interfaces/VehicleFactory';
+import { AmericanVehicleFactory } from './factories/AmericanVehicleFactory';
+import { EuropeanVehicleFactory } from './factories/EuropeanVehicleFactory';
+import { VehicleShowroom } from './VehicleShowroom';
 
 function main() {
-  let factory: IFurnitureFactory;
+  let factory: IVehicleFactory;
+  const isAmericanMarket = true; // Simulating a condition
 
-  // Simulate a condition to choose a factory
-  const isModernStyle = true; // Change this to false for Victorian style
-
-  if (isModernStyle) {
-    factory = new ModernFurnitureFactory();
+  if (isAmericanMarket) {
+    factory = new AmericanVehicleFactory();
   } else {
-    factory = new VictorianFurnitureFactory();
+    factory = new EuropeanVehicleFactory();
   }
 
-  const showroom = new FurnitureShowroom(factory);
-  showroom.displayFurniture();
+  const showroom = new VehicleShowroom(factory);
+  showroom.displayVehicles();
 }
 
 main();

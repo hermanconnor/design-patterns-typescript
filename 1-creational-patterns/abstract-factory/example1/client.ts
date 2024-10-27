@@ -1,16 +1,22 @@
-import FurnitureFactory from './FurnitureFactory';
+import Application from './Application';
+import GUIFactory from './interfaces/GUIFactory';
+import MacFactory from './macos/MacOSFactory';
+import WindowsFactory from './windows/WindowsFactory';
 
-// Small Chair
-let FURNITURE = FurnitureFactory.getFurniture('small chair');
-console.log(FURNITURE?.name);
-console.log(FURNITURE?.getDimensions());
+function main() {
+  let factory: GUIFactory;
 
-// Medium Table
-FURNITURE = FurnitureFactory.getFurniture('medium table');
-console.log(FURNITURE?.name);
-console.log(FURNITURE?.getDimensions());
+  // Choose the factory based on the environment (e.g., user preference or system type)
+  const isWindows = true; // Simulating a condition
 
-// Error - No Factory Found for furniture type: king bed
-FURNITURE = FurnitureFactory.getFurniture('king bed');
-console.log(FURNITURE?.name);
-console.log(FURNITURE?.getDimensions());
+  if (isWindows) {
+    factory = new WindowsFactory();
+  } else {
+    factory = new MacFactory();
+  }
+
+  const app = new Application(factory);
+  app.renderUI();
+}
+
+main();

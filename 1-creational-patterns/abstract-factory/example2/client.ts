@@ -1,22 +1,22 @@
-import Application from './Application';
-import GUIFactory from './interfaces/GUIFactory';
-import MacFactory from './macos/MacOSFactory';
-import WindowsFactory from './windows/WindowsFactory';
+import ModernFurnitureFactory from './factories/ModernFurnitureFactory';
+import VictorianFurnitureFactory from './factories/VictorianFurnitureFactory';
+import FurnitureShowroom from './FurnitureShowroom';
+import IFurnitureFactory from './interfaces/FurnitureFactory';
 
 function main() {
-  let factory: GUIFactory;
+  let factory: IFurnitureFactory;
 
-  // Choose the factory based on the environment (e.g., user preference or system type)
-  const isWindows = true; // Simulating a condition
+  // Simulate a condition to choose a factory
+  const isModernStyle = true; // Change this to false for Victorian style
 
-  if (isWindows) {
-    factory = new WindowsFactory();
+  if (isModernStyle) {
+    factory = new ModernFurnitureFactory();
   } else {
-    factory = new MacFactory();
+    factory = new VictorianFurnitureFactory();
   }
 
-  const app = new Application(factory);
-  app.renderUI();
+  const showroom = new FurnitureShowroom(factory);
+  showroom.displayFurniture();
 }
 
 main();
