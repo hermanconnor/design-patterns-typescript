@@ -2,6 +2,11 @@
 
 The **Single Responsibility Principle (SRP)** states that a class should have only one reason to change, meaning it should have only one responsibility or job. This principle helps to keep your code organized and makes it easier to maintain.
 
+### Key Concept
+
+1. **Single Responsibility**: Each class should encapsulate a single piece of functionality. If a class has multiple responsibilities, it becomes more complex and harder to maintain.
+2. **Reasons to Change**: If a class is responsible for multiple functionalities, a change in one aspect could affect the other functionalities, leading to potential bugs or side effects.
+
 ### Example
 
 #### Violating the SRP
