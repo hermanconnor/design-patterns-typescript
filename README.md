@@ -62,7 +62,7 @@ To get started with this repository, follow these steps:
 1. **Clone the repository:**
 
    ```bash
-   git clone https://github.com/hermanconnor/design-patterns-typescript.git
+   git clone https://github.com/yourusername/design-patterns-typescript.git
    ```
 
 2. **Navigate to the project directory:**
